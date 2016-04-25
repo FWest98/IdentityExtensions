@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FWest98.IdentityExtensions.Tests.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace FWest98.IdentityExtensions.Tests {
-    [TestClass]
+    [TestFixture]
     public class UserManagerTests {
         private ExtendedUserStore _extendedUserStore;
         private ExtendedUserManager<ExtendedApiKey, ExtendedUser, int> _extendedManager;
@@ -13,7 +13,7 @@ namespace FWest98.IdentityExtensions.Tests {
         private SimpleUserStore _simpleUserStore;
         private ExtendedUserManager<SimpleApiKey, SimpleUser, int> _simpleManager;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize() {
             _extendedUserStore = new ExtendedUserStore();
             _extendedManager = new ExtendedUserManager<ExtendedApiKey, ExtendedUser, int>(_extendedUserStore);
@@ -22,12 +22,12 @@ namespace FWest98.IdentityExtensions.Tests {
             _simpleManager = new ExtendedUserManager<SimpleApiKey, SimpleUser, int>(_simpleUserStore);
         }
 
-        [TestMethod]
+        [Test]
         public void TestSupportsApiKey() {
             Assert.IsTrue(_extendedManager.SupportsUserApiKey);
         }
 
-        [TestMethod]
+        [Test]
         public async Task TestGetApiKeys() {
             var firstUser = _extendedUserStore.Users.First();
 
@@ -41,7 +41,7 @@ namespace FWest98.IdentityExtensions.Tests {
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task TestFindByPublicKey() {
             var firstUser = _extendedUserStore.Users.First();
             var firstKey = firstUser.ApiKeys.First();
@@ -55,7 +55,7 @@ namespace FWest98.IdentityExtensions.Tests {
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task TestNotUsingApiKeys() {
             var manager = new ExtendedUserManager<ExtendedUser, int>(_extendedUserStore);
             Assert.IsFalse(manager.SupportsUserApiKey);
@@ -85,7 +85,7 @@ namespace FWest98.IdentityExtensions.Tests {
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task TestCheckApiKeys() {
             bool result;
 
