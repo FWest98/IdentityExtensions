@@ -7,4 +7,4 @@ install:
  - nuget install NUnit.Runners -Version 3.2.1 -OutputDirectory testrunner
 script:
  - xbuild /p:Configuration=Release IdentityExtensions.sln 
- - mono ./testrunner/NUnit.Runners.3.2.1/tools/nunit-console.exe ./IdentityExtensions.Tests/bin/Release/IdentityExtensions.Tests.dll
+ - mono ./testrunner/NUnit.Runners.3.2.1/tools/nunit3-console.exe ./IdentityExtensions.Tests/bin/Release/IdentityExtensions.Tests.dll
