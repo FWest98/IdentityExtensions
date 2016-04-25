@@ -15,7 +15,7 @@ install:
  - ./configure
  - make
  - sudo make install
- - cd ../../csMACnz/Coveralls.net-Samples
+ - cd ../../FWest98/IdentityExtensions
 script:
  - xbuild /p:Configuration=Release IdentityExtensions.sln
  - export LD_LIBRARY_PATH=/usr/local/lib
