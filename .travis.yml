@@ -19,7 +19,7 @@ install:
 script:
  - xbuild /p:Configuration=Release IdentityExtensions.sln
  - export LD_LIBRARY_PATH=/usr/local/lib
- - mono --debug --profile=monocov:outfile=monocovCoverage.cov,+IdentityExtensions ./packages/NUnit.ConsoleRunner.3.2.1/tools/nunit3-console.exe --process=Single ./IdentityExtensions.Tests/bin/Release/IdentityExtensions.Tests.dll
+ - mono --profile=monocov:outfile=monocovCoverage.cov,+IdentityExtensions ./packages/NUnit.ConsoleRunner.3.2.1/tools/nunit3-console.exe --process=Single ./IdentityExtensions.Tests/bin/Release/IdentityExtensions.Tests.dll
  - monocov --export-xml=monocovCoverage monocovCoverage.cov
  - cat monocovCoverage.cov
  - ls monocovCoverage
