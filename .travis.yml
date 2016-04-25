@@ -1,6 +1,7 @@
 language: csharp
 sudo: false
 solution: IdentityExtensions.sln
+mono: alpha
 install:
  - nuget restore IdentityExtensions.sln
  - nuget install NUnit.Runners -Version 3.2.1 -OutputDirectory testrunner
