@@ -68,7 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ApiKeyAuthentication\IdentityExtensions.csproj">
+    <ProjectReference Include="..\IdentityExtensions\IdentityExtensions.csproj">
       <Project>{ae56ed47-9a88-46e7-9330-5b83ba231ec4}</Project>
       <Name>IdentityExtensions</Name>
     </ProjectReference>
