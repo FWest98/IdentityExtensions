@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 
+#pragma warning disable CS1998
 namespace FWest98.IdentityExtensions.Tests.Models {
-    public class ExtendedUserStore : IUserApiKeyStore<ExtendedApiKey, ExtendedUser, int> {
+    public class ExtendedUserStore : IUserApiKeyStore<ExtendedApiKey, ExtendedUser, int>, IUserAuthenticationTokenStore<ExtendedUser, int> {
         public List<ExtendedUser> Users { get; set; }
         public List<ExtendedApiKey> ApiKeys { get; set; }
+        public List<AuthenticationToken> AuthenticationTokens { get; set; } 
 
         public ExtendedUserStore() {
             Users = new List<ExtendedUser> {
@@ -30,6 +31,14 @@ namespace FWest98.IdentityExtensions.Tests.Models {
                             PublicKey = "firstUserString3",
                             PrivateKey = "firstUserPrivate3"
                         }
+                    },
+                    AuthenticationTokens = new List<AuthenticationToken> {
+                        new AuthenticationToken {
+                            IsActive = true,
+                            Expired = DateTime.Now.AddDays(1),
+                            Issued = DateTime.Now.AddDays(-1),
+                            Token = "firstUserfirstToken"
+                        }
                     }
                 },
                 new ExtendedUser {
@@ -51,11 +60,21 @@ namespace FWest98.IdentityExtensions.Tests.Models {
                             PublicKey = "secondUserPublic3",
                             PrivateKey = "secondUserPrivate3"
                         }
+                    },
+                    AuthenticationTokens = new List<AuthenticationToken> {
+                        new AuthenticationToken {
+                            IsActive = true,
+                            Expired = DateTime.Now.AddDays(1),
+                            Issued = DateTime.Now.AddDays(-1),
+                            Token = "secondUserfirstToken"
+                        }
                     }
                 }
             };
             ApiKeys = Users.SelectMany(s => s.ApiKeys).ToList();
+            AuthenticationTokens = Users.SelectMany(s => s.AuthenticationTokens).ToList();
         }
+
 
         public async Task CreateAsync(ExtendedUser user) {
             Users.Add(user);
@@ -81,6 +100,7 @@ namespace FWest98.IdentityExtensions.Tests.Models {
                 PrivateKey = "somePrivate"
             };
             user.ApiKeys.Add(newKey);
+            ApiKeys.Add(newKey);
             return newKey;
         }
 
@@ -101,6 +121,43 @@ namespace FWest98.IdentityExtensions.Tests.Models {
             user.ApiKeys.Remove(apiKey);
         }
 
+        public async Task<IAuthenticationToken> IssueNewAuthenticationTokenAsync(ExtendedUser user) {
+            var newToken = new AuthenticationToken {
+                IsActive = true,
+                Expired = DateTime.Now.AddDays(1),
+                Issued = DateTime.Now.AddDays(-1),
+                Token = "newToken"
+            };
+            user.AuthenticationTokens.Add(newToken);
+            AuthenticationTokens.Add(newToken);
+            return newToken;
+        }
+        public async Task<IAuthenticationToken> FindTokenAsync(string token) {
+            return AuthenticationTokens.FirstOrDefault(s => s.Token == token);
+        }
+        public async Task<ExtendedUser> FindByTokenAsync(IAuthenticationToken token) {
+            return Users.FirstOrDefault(s => s.AuthenticationTokens.Contains(token));
+        }
+
+        public async Task<IList<IAuthenticationToken>> GetAuthenticationTokensAsync(ExtendedUser user) {
+            return user.AuthenticationTokens.Cast<IAuthenticationToken>().ToList();
+        }
+
+        public async Task InvalidateAuthenticationTokenAsync(IAuthenticationToken token) {
+            if(!(token is AuthenticationToken)) throw new InvalidOperationException("Token is no AuthenticationToken");
+            ((AuthenticationToken) token).IsActive = false;
+            AuthenticationTokens.First(s => s.Token == token.Token).IsActive = false;
+        }
+
+        public async Task<bool> ValidateAuthenticationTokenAsync(ExtendedUser user, IAuthenticationToken token) {
+            if (!user.AuthenticationTokens.Contains(token)) return false;
+            if (!token.IsValid) return false;
+            if(!(token is AuthenticationToken)) throw new InvalidOperationException("Token is not AuthenticationToken");
+            ((AuthenticationToken) token).IsActive = false;
+            return true;
+        }
+
         public void Dispose() { }
     }
 }
+#pragma warning restore CS1998

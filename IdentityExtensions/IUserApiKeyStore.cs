@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
 namespace FWest98.IdentityExtensions {
+    /// <summary>
+    /// Stores the ApiKeys of the user
+    /// </summary>
+    /// <typeparam name="TApiKey"></typeparam>
+    /// <typeparam name="TUser"></typeparam>
+    public interface IUserApiKeyStore<TApiKey, TUser> : IUserApiKeyStore<TApiKey, TUser, string> where TApiKey : class, ISimpleApiKey where TUser : class, IUser { } 
+
     /// <summary>
     /// Stores the ApiKeys of the user
     /// </summary>

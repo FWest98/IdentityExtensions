@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedUserManager.cs" />
+    <Compile Include="IAuthenticationToken.cs" />
     <Compile Include="IExtendedApiKey.cs" />
     <Compile Include="ISimpleApiKey.cs" />
     <Compile Include="IUserApiKeyStore.cs" />
+    <Compile Include="IUserAuthenticationTokenStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
