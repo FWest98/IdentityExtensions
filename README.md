@@ -1,4 +1,6 @@
 # IdentityExtensions for .NET Identity 2.0
+
+[![Join the chat at https://gitter.im/FWest98/IdentityExtensions](https://badges.gitter.im/FWest98/IdentityExtensions.svg)](https://gitter.im/FWest98/IdentityExtensions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/FWest98/IdentityExtensions.svg?branch=develop)](https://travis-ci.org/FWest98/IdentityExtensions)
 
 This project is an extension to the .NET Identity framework. It provides extra possibilities in order to make it more versatile and easier to use in a .NET MVC Web Api. Right now it features **API Keys** and **Authentication Tokens** as extensions for the default UserStore.
