@@ -2,6 +2,11 @@
     /// <summary>
     /// Interface for a simple ApiKey with only a public key
     /// </summary>
+    public interface ISimpleApiKey : ISimpleApiKey<string> { }
+
+    /// <summary>
+    /// Interface for a simple ApiKey with only a public key
+    /// </summary>
     /// <typeparam name="TKey"></typeparam>
     public interface ISimpleApiKey<out TKey> {
         /// <summary>

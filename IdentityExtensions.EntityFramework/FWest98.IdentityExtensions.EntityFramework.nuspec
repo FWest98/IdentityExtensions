@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>FWest98.IdentityExtensions.EntityFramework</id>
+        <version>1.0.0</version>
+        <title>Extensions for .NET Identity 2.0 - EF classes</title>
+        <authors>Floris Westerman</authors>
+        <projectUrl>https://github.com/FWest98/IdentityExtensions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Entity Framework implementation of the extensions to .NET Identity 2.0</description>
+        <releaseNotes>Initial release</releaseNotes>
+        <tags>.net, identity</tags>
+        <dependencies>
+            <dependency id="Microsoft.AspNet.Identity.Core" version="2.2.1" />
+            <dependency id="Microsoft.AspNet.Identity.EntityFramework" version="2.2.1" />
+            <dependency id="EntityFramework" version="6.1.0" />
+            <dependency id="FWest98.IdentityExtensions" version="1.0.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\IdentityExtensions.EntityFramework.dll" target="lib\IdentityExtensions.EntityFramework.dll" />
+    </files>
+</package>

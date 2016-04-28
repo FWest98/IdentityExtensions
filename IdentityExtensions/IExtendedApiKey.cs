@@ -2,6 +2,11 @@
     /// <summary>
     /// Interface for an ApiKey with a public and private key
     /// </summary>
+    public interface IExtendedApiKey : IExtendedApiKey<string> { }
+
+    /// <summary>
+    /// Interface for an ApiKey with a public and private key
+    /// </summary>
     /// <typeparam name="TKey"></typeparam>
     public interface IExtendedApiKey<out TKey> : ISimpleApiKey<TKey> {
         /// <summary>

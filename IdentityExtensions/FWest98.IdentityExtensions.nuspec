@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>FWest98.IdentityExtensions</id>
+        <version>1.0.0</version>
+        <title>Extensions for .NET Identity 2.0</title>
+        <authors>Floris Westerman</authors>
+        <projectUrl>https://github.com/FWest98/IdentityExtensions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Extensions to the .NET Identity 2.0 package, with support for api keys and authentication tokens</description>
+        <releaseNotes>Initial release</releaseNotes>
+        <tags>.net, identity</tags>
+        <dependencies>
+            <dependency id="Microsoft.AspNet.Identity.Core" version="2.2.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\IdentityExtensions.dll" target="lib\IdentityExtensions.dll" />
+    </files>
+</package>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 
+#pragma warning disable CS1998
 namespace FWest98.IdentityExtensions.Tests.Models {
     public class SimpleUserStore : IUserApiKeyStore<SimpleApiKey, SimpleUser, int> {
         public List<SimpleUser> Users { get; set; }
@@ -97,3 +97,4 @@ namespace FWest98.IdentityExtensions.Tests.Models {
         public void Dispose() { }
     }
 }
+#pragma warning restore CS1998
