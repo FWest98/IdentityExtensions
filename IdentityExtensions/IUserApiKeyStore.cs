@@ -33,7 +33,7 @@ namespace FWest98.IdentityExtensions {
         Task<TApiKey> FindKeyByIdAsync(TKey id);
 
         /// <summary>
-        /// Find the user associated with this public key
+        /// Get an ApiKey with the specified public key
         /// </summary>
         /// <param name="publicKey"></param>
         /// <returns></returns>

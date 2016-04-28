@@ -22,8 +22,10 @@ namespace FWest98.IdentityExtensions {
         /// Issues a new authentication token for the specified user
         /// </summary>
         /// <param name="user"></param>
+        /// <param name="duration"></param>
+        /// <param name="maxUses"></param>
         /// <returns></returns>
-        Task<IAuthenticationToken> IssueNewAuthenticationTokenAsync(TUser user);
+        Task<IAuthenticationToken> IssueNewAuthenticationTokenAsync(TUser user, TimeSpan duration, int maxUses);
 
         /// <summary>
         /// Get the AuthenticationToken associated with the given string

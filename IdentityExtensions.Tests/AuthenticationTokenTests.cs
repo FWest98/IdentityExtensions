@@ -47,7 +47,7 @@ namespace FWest98.IdentityExtensions.Tests {
             Assert.ThrowsAsync<NotSupportedException>(async () => await manager.FindByTokenAsync(""));
             Assert.ThrowsAsync<NotSupportedException>(async () => await manager.GetAuthenticationTokensAsync(0));
             Assert.ThrowsAsync<NotSupportedException>(async () => await manager.ValidateAuthenticationTokenAsync(0, ""));
-            Assert.ThrowsAsync<NotSupportedException>(async () => await manager.IssueAuthenticationTokenAsync(null));
+            Assert.ThrowsAsync<NotSupportedException>(async () => await manager.IssueAuthenticationTokenAsync(null, TimeSpan.Zero, 0));
             Assert.ThrowsAsync<NotSupportedException>(async () => await manager.RemoveAuthenticationTokenAsync(null));
         }
 
@@ -73,7 +73,7 @@ namespace FWest98.IdentityExtensions.Tests {
         public async Task TestIssueToken() {
             var user = _userStore.Users.First();
 
-            var newToken = await _manager.IssueAuthenticationTokenAsync(user);
+            var newToken = await _manager.IssueAuthenticationTokenAsync(user, TimeSpan.FromDays(1), 0);
             var result = await _manager.ValidateAuthenticationTokenAsync(user.Id, newToken.Token);
             Assert.IsTrue(result);
             Assert.AreEqual(newToken.Token, "newToken");

@@ -192,11 +192,13 @@ namespace FWest98.IdentityExtensions {
         /// Issues a new authentication token for the given user
         /// </summary>
         /// <param name="user"></param>
+        /// <param name="duration"></param>
+        /// <param name="maxUses"></param>
         /// <returns></returns>
-        public virtual async Task<IAuthenticationToken> IssueAuthenticationTokenAsync(TUser user) {
+        public virtual async Task<IAuthenticationToken> IssueAuthenticationTokenAsync(TUser user, TimeSpan duration, int maxUses) {
             var store = GetUserAuthenticationTokenStore();
 
-            return await store.IssueNewAuthenticationTokenAsync(user);
+            return await store.IssueNewAuthenticationTokenAsync(user, duration, maxUses);
         }
 
         /// <summary>

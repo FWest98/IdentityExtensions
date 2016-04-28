@@ -121,11 +121,11 @@ namespace FWest98.IdentityExtensions.Tests.Models {
             user.ApiKeys.Remove(apiKey);
         }
 
-        public async Task<IAuthenticationToken> IssueNewAuthenticationTokenAsync(ExtendedUser user) {
+        public async Task<IAuthenticationToken> IssueNewAuthenticationTokenAsync(ExtendedUser user, TimeSpan duration, int maxUses) {
             var newToken = new AuthenticationToken {
                 IsActive = true,
-                Expired = DateTime.Now.AddDays(1),
-                Issued = DateTime.Now.AddDays(-1),
+                Expired = DateTime.Now + duration,
+                Issued = DateTime.Now - TimeSpan.FromSeconds(10),
                 Token = "newToken"
             };
             user.AuthenticationTokens.Add(newToken);
